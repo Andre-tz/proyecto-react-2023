@@ -20,3 +20,11 @@
     color: white;
     text-decoration: none;
   }
+
+.positivo{
+	color: lime;
+}
+
+.negativo{
+	color: red;
+}
