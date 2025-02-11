@@ -8,23 +8,64 @@ const usePetition = ( endpointInfo, endpointHistory) => {
 
     const [ data, setData ] = useState(
         {
+            name: "",
             rank: "",
             symbol: "",
-            supply: "",
-            maxSupply: "",
+            priceUsd: 0,
             history: []
         }
     )
 
+    const [ cargando, setCargando ] = useState()
+
     useEffect( ( ) =>{
 
-        axios.get( `${ API_URL }${ endpointInfo }` )
-        .then( ({ data: { data: { name, rank, symbol, priceUsd } } }) =>setData( {
-            name,
-            rank,
-            symbol,
-            priceUsd
-        } ) )
+        setCargando( true )
+
+        const fetchData = async () =>{
+
+            try {
+                const [ response1, response2 ] = await Promise.all( [
+                    axios.get( `${ API_URL }${ endpointInfo }` ),
+                    axios.get( `${API_URL}${ endpointHistory }` )
+                ])
+
+                const { name, rank, symbol, priceUsd } = response1.data.data
+
+                setData({
+                    name,
+                    rank,
+                    symbol,
+                    priceUsd,
+                    history : response2.data.data
+                }
+                )
+                
+            } catch (error) {
+                console.error( error )
+            }
+        }
+
+        fetchData();
+
+    }, [])
+ 
+    return data
+
+}
+
+export default usePetition;
+
+/* axios.get( `${ API_URL }${ endpointInfo }` )
+        .then( ({ data: { data: { name, rank, symbol, priceUsd } } }) =>{
+            setData( {
+                name,
+                rank,
+                symbol,
+                priceUsd
+            } )
+            setCargando( false )
+        })
         .catch( error => console.error( error ))
 
         axios.get( `${API_URL}${ endpointHistory }` )
@@ -34,14 +75,4 @@ const usePetition = ( endpointInfo, endpointHistory) => {
                 history: data
             }))
         })
-        .catch( error => console.error( error ))
-
-    }, [])
-
-
-    
-    return data
-
-}
-
-export default usePetition;
+        .catch( error => console.error( error ))*/
