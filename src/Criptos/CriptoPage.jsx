@@ -6,9 +6,11 @@ import CriptoHistorial from "./informacion/CriptoHistorial.jsx";
 
 const CriptoPage = () =>{
     const params =useParams()
-    const peticion = usePetition( `assets/${params.id}` , `assets/${params.id}/history?interval=d1`)
+    const [ peticion, loading ] = usePetition( `assets/${params.id}` , `assets/${params.id}/history?interval=d1`)
     const { name, rank, symbol, priceUsd, history }= peticion // destructurando el estado "info"
 
+    if( loading ) return <span>Cargando....</span>
+    
     return (
         <>
             <h1>Soy la criptomoneda: {params.id}</h1>

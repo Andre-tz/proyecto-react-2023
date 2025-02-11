@@ -1,6 +1,12 @@
+import { useContext } from "react"
 import "./Menu.css"
 import { NavLink } from "react-router-dom"
+import { UserContext } from "../context/UserContext";
+
 const Menu = ()=>{
+
+    const usuario = useContext( UserContext );
+
     return (
         <>
 
@@ -10,6 +16,7 @@ const Menu = ()=>{
 
                     <li><NavLink  to="/">Incio</NavLink></li>
                     <li><NavLink to="/criptomonedas">Lista de Criptos</NavLink></li>
+                    <li><NavLink to="/perfil" >Perfil de { usuario.name }</NavLink></li>
                     
                 </ul>
 

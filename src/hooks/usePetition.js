@@ -16,11 +16,11 @@ const usePetition = ( endpointInfo, endpointHistory) => {
         }
     )
 
-    const [ cargando, setCargando ] = useState()
+    const [ loading, setLoading ] = useState()
 
     useEffect( ( ) =>{
 
-        setCargando( true )
+        setLoading( true )
 
         const fetchData = async () =>{
 
@@ -43,6 +43,8 @@ const usePetition = ( endpointInfo, endpointHistory) => {
                 
             } catch (error) {
                 console.error( error )
+            } finally{
+                setLoading( false )
             }
         }
 
@@ -50,7 +52,7 @@ const usePetition = ( endpointInfo, endpointHistory) => {
 
     }, [])
  
-    return data
+    return [ data, loading]
 
 }
 
