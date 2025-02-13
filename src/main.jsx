@@ -7,8 +7,9 @@ import Pagina404 from './Components/404.jsx'
 import Cuadricula from './Components/Cuadricula.jsx'
 import Home from './Components/Home.jsx'
 import CriptoPage from './Criptos/CriptoPage.jsx'
-import Perfil from './Components/Perfil.jsx'
+import Perfil from './Components/Users/Perfil.jsx'
 import { UserContextProvider } from './context/UserContext.jsx'
+import Login from "./Components/Users/Login.jsx"
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
                 </Route>
 
+                <Route path='/login' element= { <Login /> }/>
                 <Route path="*" element={<Pagina404 />}/>
 
             </Routes>

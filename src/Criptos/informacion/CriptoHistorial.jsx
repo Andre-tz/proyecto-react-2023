@@ -3,27 +3,25 @@ import parseFloatNumber from "../../helpers/floatNumber";
 const CriptoHistorial  = ( { history } ) => {
 
     return (
-        <table>
-
-            <thead>
+        <div className="history">
+            <table>
+                <thead>
                 <tr>
                     <th>Fecha</th>
                     <th>Precio</th>
                 </tr>
-            </thead>
+                </thead>
+                <tbody>
+                {history.map(({date, priceUsd, time}) => (
+                    <tr key={time}>
+                    <td className="label">{new Date(date).toDateString()}</td>
+                    <td className="price">{parseFloatNumber(priceUsd, 3)}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+    </div>
 
-            <tbody>
-                {
-                    history.map(( { date, priceUsd, time } ) => (
-                        <tr key={ time }>
-                            <td>{ new Date( date ).toDateString( ) }</td>
-                            <td>{ parseFloatNumber( priceUsd, 3 ) }</td>
-                        </tr>
-                    )) 
-                }
-            </tbody>
-
-        </table>
         )
 }
 

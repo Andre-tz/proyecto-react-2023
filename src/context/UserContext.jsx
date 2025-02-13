@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 const UserContext = createContext();
@@ -7,10 +8,9 @@ const UserContextProvider = ( { children } ) =>{
     const [ usuario, setUsuario ] = useState( { } )
 
     useEffect ( () => {
-        setUsuario( {
-            name: "Andre Tenorio",
-            registered: "01/enero/ 2025"
-        })
+        axios.get( "https://reqres.in/api/users/2" )
+            .then( data => setUsuario( data.data.data))
+            .catch( error => console.error( error ) )
     }, [])
 
     return(

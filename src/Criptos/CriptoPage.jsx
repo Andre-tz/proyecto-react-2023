@@ -12,8 +12,7 @@ const CriptoPage = () =>{
     if( loading ) return <span>Cargando....</span>
     
     return (
-        <>
-            <h1>Soy la criptomoneda: {params.id}</h1>
+        <div className="cripto-page-container">
             {
                 peticion && 
                 <CriptoInfo 
@@ -27,7 +26,7 @@ const CriptoPage = () =>{
                 history && <CriptoHistorial history={ history } />
             }
             
-        </>
+        </div>
         
     )
 }
