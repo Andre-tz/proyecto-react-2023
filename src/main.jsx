@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './Components/App.jsx'
+import App from './components/App.jsx'
 import "./main.css"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Pagina404 from './Components/404.jsx'
-import Cuadricula from './Components/Cuadricula.jsx'
-import Home from './Components/Home.jsx'
+import Pagina404 from './components/404.jsx'
+import Cuadricula from './components/Cuadricula.jsx'
+import Home from './components/Home.jsx'
 import CriptoPage from './Criptos/CriptoPage.jsx'
-import Perfil from './Components/Users/Perfil.jsx'
+import Perfil from './components/Users/Perfil.jsx'
 import { UserContextProvider } from './context/UserContext.jsx'
-import Login from "./Components/Users/Login.jsx"
+import Login from "./components/Users/Login.jsx"
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
